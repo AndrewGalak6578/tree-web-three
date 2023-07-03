@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@suiet/wallet-kit": "^0.2.15"
+  }
+}
