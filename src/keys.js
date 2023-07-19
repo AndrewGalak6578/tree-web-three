@@ -1,0 +1,40 @@
+
+
+const publicKeyArmored = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEZK5wHhYJKwYBBAHaRw8BAQdA/6KiFvdk4kUYUs9lUN5ik7RC/j0TcDaK
+T7qMX5fcv2/NKk1haW5fQWRtaW4gPHRyZWUtd2ViLXRocmVlQHByb3Rvbm1h
+aWwuY29tPsKMBBAWCgA+BYJkrnAeBAsJBwgJkLBhsK++A0zvAxUICgQWAAIB
+AhkBApsDAh4BFiEE4ml9GjYk7O0W6vvasGGwr74DTO8AAAiBAP98caftepjG
+tL/2XW5wsQJl0tmS6x35264WLaOqnO17mgD+OILDE9BBBZHrnl5mHrpa7sfo
+Qe7knEyHIEtrOrh9ZgvOOARkrnAeEgorBgEEAZdVAQUBAQdAdlZTvviEeUVh
++cVh9J48yyE+Iwrti8h3SVt2u02HL1YDAQgHwngEGBYIACoFgmSucB4JkLBh
+sK++A0zvApsMFiEE4ml9GjYk7O0W6vvasGGwr74DTO8AAH9vAP4gnRKOTg0s
+Gy84Cbco07ckG4gCvYIj9xq2PWTpO6lZewEAhh7D+X84ZyayC1PkKgwybt1T
+q+7KfCx/2t4os7V4hgc=
+=UYeq
+-----END PGP PUBLIC KEY BLOCK-----`;
+
+const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----
+
+xYYEZK5wHhYJKwYBBAHaRw8BAQdA/6KiFvdk4kUYUs9lUN5ik7RC/j0TcDaK
+T7qMX5fcv2/+CQMIhldRzijVA17gJ/DCZ6gze7h1j+/81keoCP0o9sgjGgRC
+NRQU/eohhJknqyZ29M4L6FDYjmtVvWyr0ihCPQFtFDofvSTzR6wIgkl6ahUF
+iM0qTWFpbl9BZG1pbiA8dHJlZS13ZWItdGhyZWVAcHJvdG9ubWFpbC5jb20+
+wowEEBYKAD4FgmSucB4ECwkHCAmQsGGwr74DTO8DFQgKBBYAAgECGQECmwMC
+HgEWIQTiaX0aNiTs7Rbq+9qwYbCvvgNM7wAACIEA/3xxp+16mMa0v/ZdbnCx
+AmXS2ZLrHfnbrhYto6qc7XuaAP44gsMT0EEFkeueXmYeulrux+hB7uScTIcg
+S2s6uH1mC8eLBGSucB4SCisGAQQBl1UBBQEBB0B2VlO++IR5RWH5xWH0njzL
+IT4jCu2LyHdJW3a7TYcvVgMBCAf+CQMIjAR02yRKE7DgqagSwNq3kCiRZdTK
+2gfQLC9Ug4fMvVCmWZ98vMCe6xLHA1ruDgBfeBGhnvfd0TAtdb3/rM4x+9LY
+vlE9tZ0qXdFU9YlZ0MJ4BBgWCAAqBYJkrnAeCZCwYbCvvgNM7wKbDBYhBOJp
+fRo2JOztFur72rBhsK++A0zvAAB/bwD+IJ0Sjk4NLBsvOAm3KNO3JBuIAr2C
+I/catj1k6TupWXsBAIYew/l/OGcmsgtT5CoMMm7dU6vuynwsf9reKLO1eIYH
+=rBeF
+-----END PGP PRIVATE KEY BLOCK-----`;
+
+const passphrase = `ypM/3(3Dhn,6YNz`;
+
+exports.publicKeyArmored = publicKeyArmored;
+exports.privateKeyArmored = privateKeyArmored;
+exports.passphrase = passphrase;
