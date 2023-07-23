@@ -79,18 +79,22 @@ function App1() {
         var description = nft_count.data.content.fields.description;
         console.log(description);
         if (description.startsWith('-----BEGIN PGP MESSAGE-----')) {
-          const encryptedMessage = await openpgp.readMessage({
-            armoredMessage: description
-          });
-          
-          const { data: decrypted } = await openpgp.decrypt({
-            message: encryptedMessage,
-            decryptionKeys: privateKey,
-            verificationKeys: publicKey
-          });
-          console.log("decrypted message is - ", decrypted);
-        
-      };
+          try {
+            const encryptedMessage = await openpgp.readMessage({
+              armoredMessage: description
+            });
+            
+            const { data: decrypted } = await openpgp.decrypt({
+              message: encryptedMessage,
+              decryptionKeys: privateKey,
+              verificationKeys: publicKey
+            });
+      
+            console.log('Decrypted message: ', decrypted);
+          } catch (error) {
+            console.log('Error decrypting message: ', error.message);
+          };
+        };
       
     };
     
