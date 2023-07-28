@@ -65,37 +65,40 @@ function ProfilePage() {
 				<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 				<link href="images/webclip.png" rel="apple-touch-icon" />
 				<div
-					data-collapse="medium"
-					data-animation="default"
-					data-duration={400}
-					data-easing="ease"
-					data-easing2="ease"
-					role="banner"
-					className="navigation w-nav"
-				>
-					<div className="container w-container">
-						<a href="#" className="brand-link w-nav-brand">
-							<div className="logo-text">TW3</div>
-						</a>
-						<nav role="navigation" className="nav-menu w-nav-menu">
-							<a href="#" className="nav-link w-nav-link">
-								Home
-							</a>
-							<a href="#" className="nav-link w-nav-link">
-								My garden
-							</a>
-							<a href="#" className="nav-link w-nav-link">
-								Info Page
-							</a>
-							<a href="#" className="nav-link _1 w-nav-link">
-								Connect Wallet
-							</a>
-						</nav>
-						<div className="nav-link menu w-nav-button">
-							<div className="w-icon-nav-menu" />
-						</div>
-					</div>
-				</div>
+            data-collapse="medium"
+            data-animation="default"
+            data-duration={400}
+            data-easing="ease"
+            data-easing2="ease"
+            role="banner"
+            className="navigation w-nav"
+          >
+            {" "}
+            <div className="container w-container">
+              {" "}
+              <a href="#" className="brand-link w-nav-brand">
+                {" "}
+                <div className="logo-text">TW3</div>{" "}
+              </a>{" "}
+              <nav role="navigation" className="nav-menu w-nav-menu">
+                {" "}
+                <a href="#features" className="nav-link w-nav-link">
+                  Home
+                </a>{" "}
+                <Link className="nav-link w-nav-link" to='/garden'>
+                  My garden
+                </Link>
+                <a href="./404.html" className="nav-link w-nav-link">
+                  Info Page
+                </a>{" "}
+                <div className=" _1 w-nav-link" id="root" ><ConnectButton /></div>{" "}
+              </nav>{" "}
+              <div className="nav-link menu w-nav-button">
+                {" "}
+                <div className="w-icon-nav-menu" />{" "}
+              </div>{" "}
+            </div>{" "}
+          </div>{" "}
 				<section className="section-2 wf-section">
 					<div />
 				</section>
