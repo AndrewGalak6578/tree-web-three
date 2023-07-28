@@ -1,21 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import App1 from './App1';
 import App2 from './App2';
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import {WalletProvider} from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <WalletProvider>
-      <App />
-      <App1 />
-    </WalletProvider>
-  </React.StrictMode>
+    <BrowserRouter>
+      <WalletProvider>
+        <App />
+        {/* <App1 /> */}
+      </WalletProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 // const root1_NFT = ReactDOM.createRoot(document.getElementById('root1_NFT'));
 // root1_NFT.render(

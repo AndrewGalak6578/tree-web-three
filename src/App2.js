@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
 import {ConnectButton} from '@suiet/wallet-kit';
 import { useWallet } from '@suiet/wallet-kit';
 import { useEffect } from 'react';
 import { TransactionBlock, testnetConnection} from "@mysten/sui.js";
 import { JsonRpcProvider } from '@mysten/sui.js';
-var file = require('file-system');
 
 function App2() {
   const wallet = useWallet()
