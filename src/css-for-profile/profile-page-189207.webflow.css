@@ -68,6 +68,7 @@ body {
   border: 1px dashed #0df32c;
   border-radius: 20px;
   margin: 0 -2px 0 0;
+  margin-top: auto;
   font-family: Ubuntu, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -625,6 +626,7 @@ body {
 .heading {
   text-align: center;
   margin-left: -8px;
+  font-family: Ubuntu, Helvetica, sans-serif;
 }
 
 .heading-2 {
@@ -675,8 +677,8 @@ body {
 
 .heading-5 {
   text-align: center;
-  margin-top: 60px;
   font-weight: 400;
+  margin-top: -5px;
 }
 
 .heading-6, .heading-7 {
@@ -747,6 +749,7 @@ body {
   margin-top: 107px;
   font-family: Ubuntu, Helvetica, sans-serif;
   font-weight: 300;
+  margin-top: 80px;
 }
 
 .slide {
@@ -758,12 +761,14 @@ body {
   font-style: normal;
   font-weight: 300;
   text-decoration: none;
+
 }
 
 .heading-17, .heading-18 {
   background-image: url('https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg');
   background-position: 0 0;
   background-size: auto;
+  
 }
 
 .heading-19 {
@@ -820,8 +825,13 @@ body {
   background-size: auto;
 }
 
-.slide-nav, .italic-text-2, .bold-text {
+.slide-nav, .italic-text-2 {
   font-family: Ubuntu, Helvetica, sans-serif;
+}
+
+.bold-text {
+  font-family: Ubuntu, Helvetica, sans-serif;
+  font-weight: 600;
 }
 
 .section-2 {

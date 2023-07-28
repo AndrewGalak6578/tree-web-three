@@ -550,6 +550,7 @@ textarea.w-select {
   min-height: 1px;
   padding-left: 10px;
   padding-right: 10px;
+
 }
 .w-col .w-col {
   padding-left: 0;
@@ -958,6 +959,7 @@ textarea.w-select {
   height: 100%;
   white-space: normal;
   text-align: left;
+  align-items: start;
 }
 .w-slider-nav {
   position: absolute;
@@ -1585,8 +1587,8 @@ textarea.w-select {
   clear: none;
 }
 .w-nav {
-  position: relative;
-  background: #dddddd;
+  position: fixed;
+  background: #50C9F3;
   z-index: 1000;
 }
 .w-nav:before,
@@ -1613,10 +1615,10 @@ textarea.w-select {
   vertical-align: top;
   text-decoration: none;
   color: #222222;
-  padding: 20px;
+  padding: 25px;
   text-align: left;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 40px;
 }
 .w-nav-link.w--current {
   color: #0082f3;

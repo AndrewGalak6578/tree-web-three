@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './css-for-profile/normalize_profile.css';
 import './css-for-profile/profile-page-189207.webflow.css';
 import './css-for-profile/webflow_profile.css';
-import './css-for-profile/webflow_profile';
+import './css-for-profile/normalize_profile.css';
 import { ConnectButton } from '@suiet/wallet-kit';
 import { useWallet } from '@suiet/wallet-kit';
 import { useEffect } from 'react';
