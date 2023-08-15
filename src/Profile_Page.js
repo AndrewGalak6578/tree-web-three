@@ -6,18 +6,58 @@ import './css-for-profile/webflow_profile.css';
 import './css-for-profile/normalize_profile.css';
 import { ConnectButton } from '@suiet/wallet-kit';
 import { useWallet } from '@suiet/wallet-kit';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { TransactionBlock } from "@mysten/sui.js";
+import { TransactionBlock, testnetConnection } from "@mysten/sui.js";
+import { JsonRpcProvider } from '@mysten/sui.js';
+import VerticalSlider from "./components/VerticalSlider";
 
 function ProfilePage() {
 	const wallet = useWallet()
+	const provider = new JsonRpcProvider(testnetConnection);
+
+	const [imageUrls, setImageUrls] = useState([
+		"defaultImage1.jpg",
+		"defaultImage2.jpg",
+		"defaultImage3.jpg"
+	]);
+
 	useEffect(() => {
 		if (!wallet.connected) return;
 		console.log('connected wallet name: ', wallet.name)
 		console.log('account address: ', wallet.account?.address)
 		console.log('account publicKey: ', wallet.account?.publicKey)
-	}, [wallet.connected])
+
+		async function fetchUrls() {
+			const urls = [];
+			const objects = await provider.getOwnedObjects({
+				owner: wallet.account?.address,
+			});
+
+			for (let i = 0; i < objects.data.length; i += 1) {
+				const nft_count = await provider.getObject({
+					id: objects.data[i].data.objectId,
+					options: {
+						showContent: true,
+						showDisplay: true,
+					},
+				});
+				if (nft_count.data.content.type === "0x41d154bdf99fa90ce79b963561c83c206f8c9dc0b868ea3d7ab5b28d33a47bb4::devnet_nft::DevNetNFT") {
+					urls.push(nft_count.data.content.fields.url);
+				}
+			}
+
+			setImageUrls(urls);
+		}
+
+		fetchUrls();
+
+		// Установите интервал для обновления URL-адресов каждую секунду
+		const interval = setInterval(fetchUrls, 10000);
+
+		// Очистите интервал при размонтировании компонента
+		return () => clearInterval(interval);
+	}, [wallet.connected]);
 
 	async function handleMoveCall() {
 		const tx = new TransactionBlock();
@@ -35,9 +75,49 @@ function ProfilePage() {
 	}
 
 	async function handleSignMessage() {
+		const objects = await provider.getOwnedObjects({
+			owner: wallet.account?.address,
+		});
+		const txn = await provider.getObject({
+			id: objects.data[0].data.objectId,
+			// fetch the object content field
+			options: {
+				showContent: true,
+				showDisplay: true
+			},
+		});
+
+		var url_list = 0;
+
+		var s = Number(0);
+		var len = Number(objects.data.length);
+		console.log('Count of NFTs: ', len);
 		await wallet.signMessage({
 			message: new TextEncoder().encode("Hello World"),
+
 		});
+		console.log('account NFTs: ', objects);
+		for (let i = 0; i < len; i += 1) {
+			var nft_count = await provider.getObject({
+				id: objects.data[i].data.objectId,
+				options: {
+					showContent: true,
+					showDisplay: true,
+				},
+			});
+			if (nft_count.data.content.type === "0x41d154bdf99fa90ce79b963561c83c206f8c9dc0b868ea3d7ab5b28d33a47bb4::devnet_nft::DevNetNFT") {
+				console.log('Yes', objects.data[i].data.objectId);
+				console.log(nft_count.data.content.fields.url)
+
+			};
+
+		};
+
+
+
+
+		console.log('NFT-Data Bsc:', txn);
+
 	}
 
 	return (
@@ -65,40 +145,40 @@ function ProfilePage() {
 				<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 				<link href="images/webclip.png" rel="apple-touch-icon" />
 				<div
-            data-collapse="medium"
-            data-animation="default"
-            data-duration={400}
-            data-easing="ease"
-            data-easing2="ease"
-            role="banner"
-            className="navigation w-nav"
-          >
-            {" "}
-            <div className="container w-container">
-              {" "}
-              <a href="#" className="brand-link w-nav-brand">
-                {" "}
-                <div className="logo-text">TW3</div>{" "}
-              </a>{" "}
-              <nav role="navigation" className="nav-menu w-nav-menu">
-                {" "}
-                <a href="#features" className="nav-link w-nav-link">
-                  Home
-                </a>{" "}
-                <Link className="nav-link w-nav-link" to='/garden'>
-                  My garden
-                </Link>
-                <a href="./404.html" className="nav-link w-nav-link">
-                  Info Page
-                </a>{" "}
-                <div className=" _1 w-nav-link" id="root" ><ConnectButton /></div>{" "}
-              </nav>{" "}
-              <div className="nav-link menu w-nav-button">
-                {" "}
-                <div className="w-icon-nav-menu" />{" "}
-              </div>{" "}
-            </div>{" "}
-          </div>{" "}
+					data-collapse="medium"
+					data-animation="default"
+					data-duration={400}
+					data-easing="ease"
+					data-easing2="ease"
+					role="banner"
+					className="navigation w-nav"
+				>
+					{" "}
+					<div className="container w-container">
+						{" "}
+						<a href="#" className="brand-link w-nav-brand">
+							{" "}
+							<div className="logo-text">TW3</div>{" "}
+						</a>{" "}
+						<nav role="navigation" className="nav-menu w-nav-menu">
+							{" "}
+							<a href="#features" className="nav-link w-nav-link">
+								Home
+							</a>{" "}
+							<Link className="nav-link w-nav-link" to='/garden'>
+								My garden
+							</Link>
+							<a href="./404.html" className="nav-link w-nav-link">
+								Info Page
+							</a>{" "}
+							<div className=" _1 w-nav-link" id="root" ><ConnectButton /></div>{" "}
+						</nav>{" "}
+						<div className="nav-link menu w-nav-button">
+							{" "}
+							<div className="w-icon-nav-menu" />{" "}
+						</div>{" "}
+					</div>{" "}
+				</div>{" "}
 				<section className="section-2 wf-section">
 					<div />
 				</section>
@@ -122,7 +202,7 @@ function ProfilePage() {
 								TREAT YOUR TREE
 							</a>
 						</div>
-						<div className="w-col w-col-6">
+						{/* <div className="w-col w-col-6">
 							<div className="w-row">
 								<div className="column-16 w-col w-col-4">
 									<h3 className="heading">Your Trees</h3>
@@ -148,9 +228,9 @@ function ProfilePage() {
 											alt=""
 											className="image-10"
 										/>
-										<a href="#" className="button _1 _1-2 _1-3">
+										<button onClick={() => handleSignMessage()} className="button _1 _1-2 _1-3">
 											MINT&nbsp;NEW&nbsp;SEED
-										</a>
+										</button>
 									</div>
 								</div>
 								<div className="column-17 w-col w-col-4">
@@ -178,9 +258,9 @@ function ProfilePage() {
 										alt=""
 										className="image-11"
 									/>
-									<a href="#" className="button _1 _1-2 _1-3 _1-4">
+									<button className="button _1 _1-2 _1-3 _1-4">
 										MINT&nbsp;NEW WATER
-									</a>
+									</button>
 								</div>
 								<div className="column-18 w-col w-col-4">
 									<h3 className="heading-3 _1">Your Drugs</h3>
@@ -207,11 +287,16 @@ function ProfilePage() {
 										alt=""
 										className="image-12"
 									/>
-									<a href="#" className="button _1 _1-2 _1-3 _1-5">
+									<button className="button _1 _1-2 _1-3 _1-5">
 										MINT&nbsp;NEW DRUG
-									</a>
+									</button>
 								</div>
 							</div>
+						</div> */}
+						<div className="sliders-container">
+							<VerticalSlider images={imageUrls} onButtonClick={() => handleSignMessage()} />
+							<VerticalSlider images={imageUrls} onButtonClick={() => handleSignMessage()} />
+							<VerticalSlider images={imageUrls} onButtonClick={() => handleSignMessage()} />
 						</div>
 					</div>
 				</section>

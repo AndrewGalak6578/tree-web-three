@@ -954,3 +954,20 @@ body {
     flex: none;
   }
 }
+.sliders-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* тень, которую вы упомянули */
+  padding: 20px; /* добавьте отступ, если хотите */
+  background-color: transparent; /* чтобы фон был прозрачным */
+}
+
+.slider-container {
+  width: calc(33.33% - 10px);
+  margin-right: 10px;
+  background-color: transparent;
+}
+
+
+

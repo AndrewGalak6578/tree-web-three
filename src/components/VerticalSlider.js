@@ -1,52 +1,42 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import atomize from "@quarkly/atomize";
+import React, {useState} from 'react';
+import './Ver_Slider.css'; // Подключаем стили
 
-// The images to show in the slider
-const images = [
-	"https://placekitten.com/200/300",
-	"https://placekitten.com/300/200",
-	"https://placekitten.com/200/200",
-	"https://placekitten.com/300/300",
-	"https://placekitten.com/400/200"
-];
-
-const settings = {
-	dots: true,
-	infinite: true,
-	speed: 500,
-	slidesToShow: 3,
-	slidesToScroll: 1,
-	vertical: true,
-};
-
-const CustomSlider = props => (
-	<div {...props} style={{ width: "180px", height: "510px" }}>
-		<Slider {...settings}>
-			{images.map((image, index) => (
-				<div key={index}>
-					<img src={image} alt="" style={{ width: "180px", height: "170px", objectFit: "cover" }} />
-				</div>
-			))}
-		</Slider>
-	</div>
-);
-
-export default atomize(CustomSlider)({
-	name: "CustomSlider",
-	effects: {
-		hover: ":hover"
-	},
-	normalize: true,
-	mixins: true,
-	description: {
-		en: "CustomSlider — my awesome component",
-	},
-	propInfo: {
-		yourCustomProps: {
-			control: "input"
-		}
-	}
-});
+function VerticalSlider({ images, title = "Your Trees", buttonLabel = "MINT NEW SEED", onButtonClick }) {
+	const [activeIndex, setActiveIndex] = useState(0);
+  
+	const goUp = () => {
+	  if (activeIndex > 0) {
+		setActiveIndex(prev => prev - 1);
+	  }
+	};
+  
+	const goDown = () => {
+	  if (activeIndex < images.length - 3) {
+		setActiveIndex(prev => prev + 1);
+	  }
+	};
+  
+	return (
+	  <div className="slider-container">
+		<h3 className="slider-heading">{title}</h3>
+		<button onClick={goUp} className="slider-nav-button slider-nav-up" />
+		<div className="slider-images">
+		  {images.slice(activeIndex, activeIndex + 3).map((imgSrc, index) => (
+			<div key={index} className="slider-image-container">
+			  <img
+				src={imgSrc}
+				alt=""
+				className="slider-image"
+			  />
+			</div>
+		  ))}
+		</div>
+		<button onClick={goDown} className="slider-nav-button slider-nav-down" />
+		<button onClick={onButtonClick} className="slider-button">
+		  {buttonLabel}
+		</button>
+	  </div>
+	);
+  }
+  
+  export default VerticalSlider;
